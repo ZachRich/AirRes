@@ -4,6 +4,8 @@ Description:
 List of Proposed Features:
 
 	Give program CSV file to process with all flights listed 
+	
+	Book flights with a 2nd CSV file
 
 	Calculates  seats booked vs. how many seats left
 	
@@ -12,6 +14,6 @@ List of Proposed Features:
 	Prints out summary for each Airlines planes
 	
 
-User paths/stories:
+User paths/stories/possible problems:
 
 Data Structures used / time complexities of modules:

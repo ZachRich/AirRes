@@ -1,19 +1,28 @@
 package main;
 
-public class FlightTemplate {
+/*
+ * Enum represents how File One is setup
+ * 
+ */
 
-	public String airline;
-	private String from;
-	private String to;
-	private Time DepartureTime;
-	private Time ArrivalTime;
+public enum FlightTemplate {
+
+	AIRLINE(0),
+	NUMBERSEATS(1),
+	PRICEPERSEAT(2),
+	ORIGIN(3),
+	DESTINATION(4);
 	
-	public static void addScheduledFlight() {
-		
-		/*
-		 * Adds Flight to list of available flights
-		 */
-		
+	private final int index;
+	//Used to keep track of column in CSV file
+	
+	private FlightTemplate(final int index) {
+		this.index = index;
 	}
+	
+	public int getIndex() {
+		return index;
+	}
+	
 	
 }
