@@ -1,6 +1,6 @@
 package main;
 
-class HashMap<K, V> {
+class HashMap<K, V> implements map<K,V>{
     
     private Entry<K,V>[] table;   //Array of Entry.
     private int capacity= 10;  //Initial capacity of HashMap
