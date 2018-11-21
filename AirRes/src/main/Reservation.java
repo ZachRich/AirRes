@@ -2,7 +2,9 @@ package main;
 
 public class Reservation {
 
-	private final Passenger passenger;
+	//Input File #2
+	
+	private final String name;
 	
 	private final int seatNumber;
 	
@@ -10,15 +12,15 @@ public class Reservation {
 	
 	private final String dest;
 	
-	public Reservation(final Passenger passenger, final int seatNumber, final String origin, final String dest) {
-		this.passenger = passenger;
+	public Reservation(final int seatNumber, final String name, final String origin, final String dest) {
+		this.name = name;
 		this.seatNumber = seatNumber;
 		this.origin = origin;
 		this.dest = dest;
 	}
 	
-	public Passenger getPassenger(Passenger passenger) {
-		return passenger;
+	public String getName(String name) {
+		return name;
 	}
 	
 	public int getSeatNumber(int seatNumber) {
