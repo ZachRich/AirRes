@@ -7,7 +7,7 @@ package main;
 
 public enum FlightTemplate {
 
-	AIRLINE(0),
+	ID(0),
 	NUMBERSEATS(1),
 	PRICEPERSEAT(2),
 	ORIGIN(3),
