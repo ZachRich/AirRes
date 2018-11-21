@@ -8,6 +8,8 @@ public class Main {
 		String inputfilepath2 = "";
 		String outputfilepath = "";
 		
+		HashMap<String, Flight[]> map = new HashMap<String, int[]>();
+		
 		
 		
 		
