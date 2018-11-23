@@ -28,24 +28,19 @@ public class Main {
 		
 		ArrayList<Flight> temp = new ArrayList<Flight>();		
 		
-		 Scanner input = new Scanner(new File(flightFile));
-		input.useDelimiter("\n");
-
-		while(input.hasNext()) {
-			
-			String ID = input.next();
-			int capacity = input.nextInt();
-			Double price = input.nextDouble();
-			String origin = input.next();
-			String destination = input.next();
-			
-			Flight newFlight = new Flight(ID, capacity, price, origin, destination);
-			
-			temp.add(newFlight);
+		BufferedReader br = new BufferedReader(new FileReader(flightFile));
+		String line;
+		
+		while ((line = br.readLine()) != null) {
+		      String[] values = line.split(",");
+	
+		      Flight newFlight = new Flight(values[0], Integer.parseInt(values[1]), Double.parseDouble(values[2]), values[3], values[4]);
+		      temp.add(newFlight);
 		}
 		
-		temp.listIterator();
-		
+		for(Flight f : temp) {
+			System.out.println(f);
+		}
 		
 	}
 }
