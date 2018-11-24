@@ -1,26 +1,20 @@
 package main;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JWindow;
-import javax.swing.SwingConstants;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 public class Main {
@@ -55,8 +49,9 @@ public class Main {
 	 */
 	public Main() {
 	
-		initialize();
 		
+		initialize();
+		SystemRunner.printHashMap(flightMap);
 	}
 
 	/**
@@ -132,7 +127,7 @@ public class Main {
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+			System.out.println("You chose [" + chooser.getSelectedFile().getName() + "] for your Flight Data");
 		}
 		return flightFile = new File(chooser.getSelectedFile().getPath());
 	}
@@ -145,27 +140,10 @@ public class Main {
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+			System.out.println("You chose [" + chooser.getSelectedFile().getName() + "] for your Passenger Data");
 		}
 		return passengerFile = new File(chooser.getSelectedFile().getPath());
 	}
 
-	public static void initSplashScreen() throws MalformedURLException {
-		JWindow window = new JWindow();
-		window.getContentPane().add(new javax.swing.JLabel("", new ImageIcon(new URL("http://docs.oracle.com/javase/tutorial/uiswing/examples/misc/SplashDemoProject/src/misc/images/splash.gif")), SwingConstants.CENTER));
-		window.setBounds(500, 150, 1200, 600);
-		window.setVisible(true);
-		try {
-		    Thread.sleep(5000);
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}
-		window.setVisible(false);
-		JFrame frame = new JFrame();
-		frame.getContentPane().add(new javax.swing.JLabel("Welcome"));
-		frame.setVisible(true);
-		frame.setSize(300,100);
-		window.dispose();
-	}
 	
 }

@@ -12,20 +12,34 @@ import java.util.Map.Entry;
 public class SystemRunner {
 	
 	public static void printHashMap(HashMap<Flight, Reservation[]> map) {
+		
+		StringBuilder sb = new StringBuilder();
+		
 		for (Entry<Flight, Reservation[]> entry : map.entrySet()) {
 			  Flight key = entry.getKey();
 			  Reservation[] value = entry.getValue();
 			  
-			  System.out.println("-------------------------------------------------------------------------------------------------------------");
-			  System.out.print("\n" + key);
 			  
-			  System.out.print("\n" + "[");
+			  
+			  String output = "-------------------------------------------------------------------------------------------------------------" +"\n" + key +  "[";
+			  sb.append(output);
+			  int format = 0;
 			  for(Reservation r : value) {
-				  System.out.print(r + ", ");
+				  
+				  if(format % 3 == 0) {
+					  sb.append("\n");
+				  }
+				  
+				  sb.append(r + ", ");
+				  
+				  format++;
 			  }
-			  System.out.print("]" + "\n");
+			  sb.append("]" + "\n");
 			 
 			}
+		
+		System.out.println(sb);
+		
 	}
 
 	public static void initalizeFlights(File flights, File passengers, HashMap<Flight, Reservation[]> map) {
