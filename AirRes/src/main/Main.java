@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.EventQueue;
+import javax.swing.JFrame;
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,7 +23,21 @@ public class Main {
 	static final String passengerFile = "/home/zach/Desktop/inputFile2.txt";
 	static final String outputfilepath = "";
 
+	private JFrame frame;
+	
 	public static void main(String[] args) throws IOException {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main window = new Main();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 		
 		initalizePassengers();
 		initalizeFlights();
@@ -45,6 +61,23 @@ public class Main {
 		
 
 		
+	}
+	
+
+	/**
+	 * Create the application.
+	 */
+	public Main() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void initalizeFlights() {
