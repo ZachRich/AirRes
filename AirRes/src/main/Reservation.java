@@ -35,4 +35,10 @@ public class Reservation {
 		return dest;
 	}
 	
+	public String toString() {
+		
+		return "Name: " + name + "\n Seat Number:  " + seatNumber + "\n Path: " + origin + " to " + dest + "\n";
+		
+	}
+	
 }

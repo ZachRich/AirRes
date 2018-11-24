@@ -59,7 +59,7 @@ public class Main {
 
 	public static void initalizePassengers() {
 
-		ArrayList<Reservation> temp = new ArrayList<Reservation>();
+		ArrayList<Reservation> temp1 = new ArrayList<Reservation>();
 
 		BufferedReader br = null;
 		try {
@@ -73,9 +73,9 @@ public class Main {
 		try {
 			while ((line = br.readLine()) != null) {
 				String[] values = line.split(",");
-
-				Reservation newReservation = new Reservation(values[0], values[1], Integer.parseInt(values[2]),values[3]);
-				temp.add(newReservation);
+				
+				Reservation newReservation = new Reservation(values[0], values[1], Integer.parseInt(values[2]), values[3]);
+				temp1.add(newReservation);
 			}
 
 			br.close();
@@ -85,7 +85,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		for (Reservation r : temp) {
+		for (Reservation r : temp1) {
 			System.out.println(r);
 		}
 
