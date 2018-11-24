@@ -1,11 +1,26 @@
 package main;
 
 import java.awt.EventQueue;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JWindow;
+import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 public class Main {
 
+	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
+	static File flightFile = new File("/home/zach/Desktop/inputFile1.txt");
+	static File passengerFile = new File("/home/zach/Desktop/inputFile2.txt");
+	static File outputfilepath = new File("");
 	private JFrame frame;
 
 	/**
@@ -21,19 +36,19 @@ public class Main {
 					e.printStackTrace();
 				}
 			}
-		});
-		
-		SystemRunner.initalizePassengers();
-		SystemRunner.initalizeFlights();
-		SystemRunner.printHashMap();
-		
+		});       
+
+		//SystemRunner.initalizeFlights(flightFile, passengerFile, flightMap);
+		//SystemRunner.printHashMap(flightMap);
 	}
 
 	/**
 	 * Create the application.
 	 */
 	public Main() {
+	
 		initialize();
+		
 	}
 
 	/**
@@ -43,6 +58,53 @@ public class Main {
 		frame = new JFrame();
 		frame.setBounds(200, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JButton b = new JButton("Play", new ImageIcon("play.png"));    
+		b.setBounds(100,100,140, 40);    
+		frame.add(b);    
 	}
 
+	public static File setFlightFile() {
+
+		JFileChooser chooser = new JFileChooser();
+		chooser.setDialogTitle("Flight File");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(null);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+		}
+		return flightFile = new File(chooser.getSelectedFile().getPath());
+	}
+
+	public static File setPassengerFile() {
+
+		JFileChooser chooser = new JFileChooser();
+		chooser.setDialogTitle("Passenger File");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(null);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+		}
+		return passengerFile = new File(chooser.getSelectedFile().getPath());
+	}
+
+	public static void initSplashScreen() throws MalformedURLException {
+		JWindow window = new JWindow();
+		window.getContentPane().add(new javax.swing.JLabel("", new ImageIcon(new URL("http://docs.oracle.com/javase/tutorial/uiswing/examples/misc/SplashDemoProject/src/misc/images/splash.gif")), SwingConstants.CENTER));
+		window.setBounds(500, 150, 1200, 600);
+		window.setVisible(true);
+		try {
+		    Thread.sleep(5000);
+		} catch (InterruptedException e) {
+		    e.printStackTrace();
+		}
+		window.setVisible(false);
+		JFrame frame = new JFrame();
+		frame.add(new javax.swing.JLabel("Welcome"));
+		frame.setVisible(true);
+		frame.setSize(300,100);
+		window.dispose();
+	}
+	
 }

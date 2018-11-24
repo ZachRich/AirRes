@@ -1,6 +1,7 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,16 +10,9 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 
 public class SystemRunner {
-
-	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
-	static ArrayList<Reservation> passengerList = new ArrayList<Reservation>();
-
-	static final String flightFile = "/home/zach/Desktop/inputFile1.txt";
-	static final String passengerFile = "/home/zach/Desktop/inputFile2.txt";
-	static final String outputfilepath = "";
 	
-	public static void printHashMap() {
-		for (Entry<Flight, Reservation[]> entry : flightMap.entrySet()) {
+	public static void printHashMap(HashMap<Flight, Reservation[]> map) {
+		for (Entry<Flight, Reservation[]> entry : map.entrySet()) {
 			  Flight key = entry.getKey();
 			  Reservation[] value = entry.getValue();
 			  
@@ -34,13 +28,14 @@ public class SystemRunner {
 			}
 	}
 
-	public static void initalizeFlights() {
+	public static void initalizeFlights(File flights, File passengers, HashMap<Flight, Reservation[]> map) {
 
 		ArrayList<Flight> temp = new ArrayList<Flight>();
+		ArrayList<Reservation> passengerList = initalizePassengers(passengers);
 
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(flightFile));
+			br = new BufferedReader(new FileReader(flights));
 		} catch (FileNotFoundException e) {
 			System.err.println("File Not Found");
 		}
@@ -59,15 +54,12 @@ public class SystemRunner {
 				
 				for(int i = 0; i < passengerList.size(); i++) {
 					if(passengerList.get(i) != null && passengerList.get(i).getOrigin().equals(newFlight.getOrigin()) && passengerList.get(i).getDest().equals(newFlight.getDestination())) {
-						//System.out.println(passengerList.get(i).getName() + " boarded " + "Flight:" + newFlight.getID());
-						
-						//System.out.println("SeatNum: "+passengerList.get(i).getSeatNumber() + " SeatsOnPlane: "+newFlight.getCapacity());
 						tempArray[passengerList.get(i).getSeatNumber() - 1] = passengerList.get(i); 
 						
 					}
 				}
 				
-				flightMap.put(newFlight, tempArray);
+				map.put(newFlight, tempArray);
 				
 			}
 
@@ -80,11 +72,13 @@ public class SystemRunner {
 
 	}
 
-	public static void initalizePassengers() {
-
+	public static ArrayList<Reservation> initalizePassengers(File file) {
+		
+		ArrayList<Reservation> list = new ArrayList<Reservation>();
+		
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(passengerFile));
+			br = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e) {
 			System.err.println("File Not Found");
 		}
@@ -96,7 +90,7 @@ public class SystemRunner {
 				String[] values = line.split(",");
 				
 				Reservation newReservation = new Reservation(values[0], values[1], Integer.parseInt(values[2]), values[3]);
-				passengerList.add(newReservation);
+				list.add(newReservation);
 			}
 
 			br.close();
@@ -106,6 +100,8 @@ public class SystemRunner {
 			e.printStackTrace();
 		}
 
+		return list;
+		
 	}
 
 }
