@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Main {
@@ -24,7 +25,22 @@ public class Main {
 		
 		initalizePassengers();
 		initalizeFlights();
+		
+		for (Entry<Flight, Reservation[]> entry : flightMap.entrySet()) {
+			  Flight key = entry.getKey();
+			  Reservation[] value = entry.getValue();
+			  System.out.println(key);
+			  
+			  System.out.println("\n" + "[");
+			  for(Reservation r : value) {
+				  System.out.print(r + ", ");
+			  }
+			  System.out.println("]" + "\n");
+			  
+			}
+		
 
+		
 	}
 
 	public static void initalizeFlights() {
@@ -47,14 +63,19 @@ public class Main {
 				Flight newFlight = new Flight(values[0], Integer.parseInt(values[1]), Double.parseDouble(values[2]),
 						values[3], values[4]);
 				
+				Reservation[] tempArray = new Reservation[newFlight.getCapacity()];
 				
 				for(int i = 0; i < passengerList.size(); i++) {
 					if(passengerList.get(i) != null && passengerList.get(i).getOrigin().equals(newFlight.getOrigin()) && passengerList.get(i).getDest().equals(newFlight.getDestination())) {
 						//System.out.println(passengerList.get(i).getName() + " boarded " + "Flight:" + newFlight.getID());
-						Reservation[] tempArray = new Reservation[newFlight.getCapacity()];
-						flightMap.put(newFlight, tempArray);
+						
+						//System.out.println("SeatNum: "+passengerList.get(i).getSeatNumber() + " SeatsOnPlane: "+newFlight.getCapacity());
+						tempArray[passengerList.get(i).getSeatNumber() - 1] = passengerList.get(i); 
+						
 					}
 				}
+				
+				flightMap.put(newFlight, tempArray);
 				
 			}
 
@@ -91,10 +112,6 @@ public class Main {
 			// TODO Auto-generated catch block
 			System.err.println("IOException or NumberFormatException");
 			e.printStackTrace();
-		}
-
-		for (Reservation r : passengerList) {
-			System.out.println(r);
 		}
 
 	}
