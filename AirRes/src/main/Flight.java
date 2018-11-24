@@ -24,7 +24,7 @@ public class Flight {
 
 	public String getID() {
 		return ID;
-	}
+	}	
 
 	public Double getPrice() {
 		return price;

@@ -1,14 +1,12 @@
 package main;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 
-public class Home extends JFrame {
+public class Main {
+
+	private JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -17,8 +15,8 @@ public class Home extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home frame = new Home();
-					frame.setVisible(true);
+					Main window = new Main();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -32,9 +30,19 @@ public class Home extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the application.
 	 */
-	public Home() {
+	public Main() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(200, 100, 1000, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
