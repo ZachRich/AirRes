@@ -26,8 +26,8 @@ import java.awt.event.ActionEvent;
 public class Main {
 
 	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
-	static File flightFile = new File("/home/zach/Desktop/inputFile1.txt");
-	static File passengerFile = new File("/home/zach/Desktop/inputFile2.txt");
+	static File flightFile = new File("");
+	static File passengerFile = new File("");
 	static File outputfilepath = new File("");
 	private JFrame frame;
 
@@ -92,6 +92,13 @@ public class Main {
 		});
 		
 		JButton btnNewButton_2 = new JButton("Book Flights");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				SystemRunner.initalizeFlights(flightFile, passengerFile, flightMap);
+				SystemRunner.printHashMap(flightMap);
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(2, 2, 5, 5);
 		gbc_btnNewButton_2.gridx = 1;

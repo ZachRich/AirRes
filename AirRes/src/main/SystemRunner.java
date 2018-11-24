@@ -72,7 +72,7 @@ public class SystemRunner {
 
 	}
 
-	public static ArrayList<Reservation> initalizePassengers(File file) {
+	private static ArrayList<Reservation> initalizePassengers(File file) {
 		
 		ArrayList<Reservation> list = new ArrayList<Reservation>();
 		
