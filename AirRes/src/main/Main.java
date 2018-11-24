@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 
 public class Main {
@@ -63,6 +64,7 @@ public class Main {
 		frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel lblNewLabel = new JLabel("Airline Booking System");
+		lblNewLabel.setFont(new Font("Ubuntu", Font.PLAIN, 37));
 		frame.getContentPane().add(lblNewLabel);
 	}
 
