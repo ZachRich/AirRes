@@ -14,15 +14,16 @@ import java.util.Scanner;
 public class Main {
 
 	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
+	static ArrayList<Reservation> passengerList = new ArrayList<Reservation>();
 
 	static final String flightFile = "/home/zach/Desktop/inputFile1.txt";
 	static final String passengerFile = "/home/zach/Desktop/inputFile2.txt";
 	static final String outputfilepath = "";
 
 	public static void main(String[] args) throws IOException {
-
-		initalizeFlights();
+		
 		initalizePassengers();
+		initalizeFlights();
 
 	}
 
@@ -45,7 +46,16 @@ public class Main {
 
 				Flight newFlight = new Flight(values[0], Integer.parseInt(values[1]), Double.parseDouble(values[2]),
 						values[3], values[4]);
-				temp.add(newFlight);
+				
+				
+				for(int i = 0; i < passengerList.size(); i++) {
+					if(passengerList.get(i) != null && passengerList.get(i).getOrigin().equals(newFlight.getOrigin()) && passengerList.get(i).getDest().equals(newFlight.getDestination())) {
+						//System.out.println(passengerList.get(i).getName() + " boarded " + "Flight:" + newFlight.getID());
+						Reservation[] tempArray = new Reservation[newFlight.getCapacity()];
+						flightMap.put(newFlight, tempArray);
+					}
+				}
+				
 			}
 
 			br.close();
@@ -58,8 +68,6 @@ public class Main {
 	}
 
 	public static void initalizePassengers() {
-
-		ArrayList<Reservation> temp1 = new ArrayList<Reservation>();
 
 		BufferedReader br = null;
 		try {
@@ -75,7 +83,7 @@ public class Main {
 				String[] values = line.split(",");
 				
 				Reservation newReservation = new Reservation(values[0], values[1], Integer.parseInt(values[2]), values[3]);
-				temp1.add(newReservation);
+				passengerList.add(newReservation);
 			}
 
 			br.close();
@@ -85,7 +93,7 @@ public class Main {
 			e.printStackTrace();
 		}
 
-		for (Reservation r : temp1) {
+		for (Reservation r : passengerList) {
 			System.out.println(r);
 		}
 

@@ -19,19 +19,19 @@ public class Reservation {
 		this.dest = dest;
 	}
 	
-	public String getName(String name) {
+	public String getName() {
 		return name;
 	}
 	
-	public int getSeatNumber(int seatNumber) {
+	public int getSeatNumber() {
 		return seatNumber;
 	}
 	
-	public String getOrigin(String origin) {
+	public String getOrigin() {
 		return origin;
 	}
 	
-	public String getDest(String dest) {
+	public String getDest() {
 		return dest;
 	}
 	
