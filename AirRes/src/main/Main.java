@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
 
 
 public class Main {
@@ -58,9 +60,10 @@ public class Main {
 		frame = new JFrame();
 		frame.setBounds(200, 100, 1000, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JButton b = new JButton("Play", new ImageIcon("play.png"));    
-		b.setBounds(100,100,140, 40);    
-		frame.add(b);    
+		frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JLabel lblNewLabel = new JLabel("Airline Booking System");
+		frame.getContentPane().add(lblNewLabel);
 	}
 
 	public static File setFlightFile() {
@@ -101,7 +104,7 @@ public class Main {
 		}
 		window.setVisible(false);
 		JFrame frame = new JFrame();
-		frame.add(new javax.swing.JLabel("Welcome"));
+		frame.getContentPane().add(new javax.swing.JLabel("Welcome"));
 		frame.setVisible(true);
 		frame.setSize(300,100);
 		window.dispose();
