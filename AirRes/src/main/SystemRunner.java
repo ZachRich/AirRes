@@ -1,20 +1,14 @@
 package main;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import java.awt.List;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Scanner;
 
-public class Main {
+public class SystemRunner {
 
 	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
 	static ArrayList<Reservation> passengerList = new ArrayList<Reservation>();
@@ -22,26 +16,8 @@ public class Main {
 	static final String flightFile = "/home/zach/Desktop/inputFile1.txt";
 	static final String passengerFile = "/home/zach/Desktop/inputFile2.txt";
 	static final String outputfilepath = "";
-
-	private JFrame frame;
 	
-	public static void main(String[] args) throws IOException {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Main window = new Main();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-		
-		initalizePassengers();
-		initalizeFlights();
-		
+	public static void printHashMap() {
 		for (Entry<Flight, Reservation[]> entry : flightMap.entrySet()) {
 			  Flight key = entry.getKey();
 			  Reservation[] value = entry.getValue();
@@ -56,28 +32,6 @@ public class Main {
 			  System.out.print("]" + "\n");
 			 
 			}
-		
-		
-		
-
-		
-	}
-	
-
-	/**
-	 * Create the application.
-	 */
-	public Main() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void initalizeFlights() {
