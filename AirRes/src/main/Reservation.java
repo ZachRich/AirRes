@@ -12,7 +12,7 @@ public class Reservation {
 	
 	private final String dest;
 	
-	public Reservation(final int seatNumber, final String name, final String origin, final String dest) {
+	public Reservation(final String origin, final String dest, final int seatNumber, final String name) {
 		this.name = name;
 		this.seatNumber = seatNumber;
 		this.origin = origin;
