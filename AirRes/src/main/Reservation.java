@@ -37,7 +37,7 @@ public class Reservation {
 	
 	public String toString() {
 		
-		return "Name: " + name + "\n Seat Number:  " + seatNumber + "\n Path: " + origin + " to " + dest + "\n";
+		return " [Name: " + name.replaceAll("([^_])([A-Z])", "$1 $2") + ", SeatNumber: " + seatNumber + ", Path: " + origin + " to " + dest + "] ";
 		
 	}
 	

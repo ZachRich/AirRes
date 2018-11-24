@@ -29,14 +29,16 @@ public class Main {
 		for (Entry<Flight, Reservation[]> entry : flightMap.entrySet()) {
 			  Flight key = entry.getKey();
 			  Reservation[] value = entry.getValue();
-			  System.out.println(key);
 			  
-			  System.out.println("\n" + "[");
+			  System.out.println("-------------------------------------------------------------------------------------------------------------");
+			  System.out.print("\n" + key);
+			  
+			  System.out.print("\n" + "[");
 			  for(Reservation r : value) {
 				  System.out.print(r + ", ");
 			  }
-			  System.out.println("]" + "\n");
-			  
+			  System.out.print("]" + "\n");
+			 
 			}
 		
 
@@ -64,6 +66,7 @@ public class Main {
 						values[3], values[4]);
 				
 				Reservation[] tempArray = new Reservation[newFlight.getCapacity()];
+				
 				
 				for(int i = 0; i < passengerList.size(); i++) {
 					if(passengerList.get(i) != null && passengerList.get(i).getOrigin().equals(newFlight.getOrigin()) && passengerList.get(i).getDest().equals(newFlight.getDestination())) {
