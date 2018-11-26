@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -40,8 +41,7 @@ public class Main {
 			}
 		});       
 
-		//SystemRunner.initalizeFlights(flightFile, passengerFile, flightMap);
-		//SystemRunner.printHashMap(flightMap);
+		
 	}
 
 	/**
@@ -143,6 +143,37 @@ public class Main {
 			System.out.println("You chose [" + chooser.getSelectedFile().getName() + "] for your Passenger Data");
 		}
 		return passengerFile = new File(chooser.getSelectedFile().getPath());
+	}
+	
+	public static void infoBox(String infoMessage, String titleBar) {
+		/*
+		 * infoBox Displays a message consisting of a message, and a title for the popup box
+		 */
+		JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.WARNING_MESSAGE);
+	}
+
+	/*
+	 * Overloaded entryBox methods:
+	 * These are used for handling invalid inputs while Building the Passenger and Flight Objects
+	 * A popup occurs when an invalid input is taken, and it asks the user to input a new value
+	 * inplace of the invalid value.
+	 */
+	
+	public static int entryBox(String infoMessage, String titleBar, int i) {
+		 String entry= JOptionPane.showInputDialog(null, infoMessage, titleBar, JOptionPane.WARNING_MESSAGE);
+		 int one = Integer.parseInt(entry);
+		return one;
+	}
+	
+	public static String entryBox(String infoMessage, String titleBar) {
+		 String entry= JOptionPane.showInputDialog(null, infoMessage, titleBar, JOptionPane.WARNING_MESSAGE);
+		return entry;
+	}
+	
+	 public static double entryBox(String infoMessage, String titleBar, double i) {
+		 String entry= JOptionPane.showInputDialog(null, infoMessage, titleBar, JOptionPane.WARNING_MESSAGE);
+		double temp = Double.parseDouble(entry);
+		return temp;
 	}
 
 	
