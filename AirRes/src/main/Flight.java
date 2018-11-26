@@ -18,7 +18,7 @@ public class Flight {
 		this.destination = destination;	
 	}
 	
-	public Flight() {
+	public Flight() { //noargs Constructor
 		
 	}
 	
