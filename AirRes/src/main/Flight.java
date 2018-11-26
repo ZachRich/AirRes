@@ -4,18 +4,42 @@ public class Flight {
 
 	//Input File #1
 	
-	private final int capacity;
-	private final String ID;
-	private final Double price;
-	private final String origin;
-	private final String destination;
+	private int capacity;
+	private String ID;
+	private  double price;
+	private String origin;
+	private  String destination;
 	
-	public Flight(final String ID, final int capacity, final Double price, final String origin, final String destination) {
+	public Flight( String ID,  int capacity,  double price,  String origin,  String destination) {
 		this.capacity = capacity;
 		this.ID = ID;
 		this.price = price;
 		this.origin = origin;
 		this.destination = destination;	
+	}
+	
+	public Flight() {
+		
+	}
+	
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+	
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+	
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+	
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
 	
 	public int getCapacity() {

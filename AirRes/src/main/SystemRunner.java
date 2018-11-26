@@ -60,8 +60,13 @@ public class SystemRunner {
 			while ((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 
-				Flight newFlight = new Flight(values[0], Integer.parseInt(values[1]), Double.parseDouble(values[2]),
-						values[3], values[4]);
+				Flight newFlight = new Flight();
+				
+				newFlight.setID(values[0]);
+				newFlight.setCapacity(Integer.parseInt(values[1]));
+				newFlight.setPrice(Double.parseDouble(values[2]));
+				newFlight.setOrigin(values[3]);
+				newFlight.setDestination(values[4]);
 				
 				Reservation[] tempArray = new Reservation[newFlight.getCapacity()];
 				
