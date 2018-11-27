@@ -7,9 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map.Entry;
+import java.util.Set;
 
 public class SystemRunner {
+	
+	public static Reservation duplcate;
 	
 	public static void printHashMap(HashMap<Flight, Reservation[]> map) {
 		
@@ -93,6 +97,8 @@ public class SystemRunner {
 
 	private static ArrayList<Reservation> initalizePassengers(File file) {
 		
+		
+		
 		ArrayList<Reservation> list = new ArrayList<Reservation>();
 		
 		BufferedReader br = null;
@@ -118,9 +124,10 @@ public class SystemRunner {
 			System.err.println("IOException or NumberFormatException");
 			e.printStackTrace();
 		}
-
+	
 		return list;
 		
 	}
+
 
 }

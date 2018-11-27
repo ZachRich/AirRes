@@ -51,6 +51,7 @@ public class Main {
 	//change
 		
 		initialize();
+		
 		SystemRunner.printHashMap(flightMap);
 	}
 
