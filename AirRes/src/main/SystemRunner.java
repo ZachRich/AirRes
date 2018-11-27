@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class SystemRunner {
 	
-	public static Reservation duplcate;
+
 	
 	public static void printHashMap(HashMap<Flight, Reservation[]> map) {
 		
@@ -66,7 +66,7 @@ public class SystemRunner {
 
 				Flight newFlight = new Flight();
 				
-				newFlight.setID(values[0]);
+				newFlight.setID(values[0]);                                                  //Object Creation
 				newFlight.setCapacity(Integer.parseInt(values[1]));
 				newFlight.setPrice(Double.parseDouble(values[2]));
 				newFlight.setOrigin(values[3]);

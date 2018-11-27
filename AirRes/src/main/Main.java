@@ -15,6 +15,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -30,6 +32,14 @@ public class Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,7 +61,6 @@ public class Main {
 	//change
 		
 		initialize();
-		
 		SystemRunner.printHashMap(flightMap);
 	}
 
