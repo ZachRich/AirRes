@@ -33,6 +33,8 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
+		SystemRunner.addFlight(flightMap, "A400", 20, 200.0, "DEN", "ORD");
+		
 		/*
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -63,7 +65,7 @@ public class Main {
 	//change
 		
 		initialize();
-		SystemRunner.printHashMap(flightMap);
+
 	}
 
 	/**
@@ -128,6 +130,15 @@ public class Main {
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 4;
 		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
+		
+		JButton btnNewButton_4 = new JButton("Book Flights");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				SystemRunner.populateHashMap(flightMap);
+				SystemRunner.printHashMap(flightMap);
+			}
+		});
 	}
 
 	public static File setFlightFile() {
