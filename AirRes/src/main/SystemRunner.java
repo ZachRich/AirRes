@@ -148,9 +148,6 @@ public class SystemRunner {
 			
 			flightObjects.add(newFlight); //Add new OBJ to flightObjects list
 		}
-		for(Flight f : flightObjects) {
-			System.out.println(f);
-		}
 		
 		return flightObjects;
 		
@@ -171,17 +168,14 @@ public class SystemRunner {
 			
 			Reservation newReservation = new Reservation();  //Initialize OBJ
 			 
-			newFlight.setID(splitter[0]);   //ID
-			newFlight.setCapacity(Integer.parseInt(splitter[1])); //Capacity
-			newFlight.setPrice(Double.parseDouble(splitter[2])); //Price
-			newFlight.setOrigin(splitter[3]);  //Origin
-			newFlight.setDestination(splitter[4]); //Destination
+			newReservation.setOrigin(splitter[0]); //Origin
+			newReservation.setDest(splitter[1]);  //Destination
+			newReservation.setSeatNumber(Integer.parseInt(splitter[2])); //seatNumber
+			newReservation.setName(splitter[3]); //name
 			
-			reservationObjects.add(newFlight); //Add new OBJ to flightObjects list
+			reservationObjects.add(newReservation);  
 		}
-		for(Flight f : flightObjects) {
-			System.out.println(f);
-		}
+		
 		
 		return reservationObjects;
 		
