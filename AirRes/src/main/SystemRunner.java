@@ -46,7 +46,9 @@ public class SystemRunner {
 		
 	}
 
-	public static void initalizeFlights(File flights, File passengers, HashMap<Flight, Reservation[]> map) {
+	/*
+	
+	public static void initalizeFlights(File flights, File passengers, HashMap<Flight, Reservation[]> map) throws NumberFormatException, IOException {
 
 		ArrayList<Flight> temp = new ArrayList<Flight>();
 		ArrayList<Reservation> passengerList = initalizePassengers(passengers);
@@ -95,38 +97,120 @@ public class SystemRunner {
 
 	}
 
-	private static ArrayList<Reservation> initalizePassengers(File file) {
-		
-		
+	private static ArrayList<Reservation> initalizePassengers(File file) throws NumberFormatException, IOException {
 		
 		ArrayList<Reservation> list = new ArrayList<Reservation>();
 		
 		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(file));
-		} catch (FileNotFoundException e) {
-			System.err.println("File Not Found");
-		}
+	
+			try {
+				br = new BufferedReader(new FileReader(file));               //Setting up file I/O
+			} catch (FileNotFoundException e1) {
+				System.out.println("File Not Found; Please choose another.");
+				Main.setPassengerFile();
+			}
 
+			
+			
 		String line;
 
-		try {
 			while ((line = br.readLine()) != null) {
 				String[] values = line.split(",");
 				
 				Reservation newReservation = new Reservation(values[0], values[1], Integer.parseInt(values[2]), values[3]);
 				list.add(newReservation);
 			}
-
-			br.close();
-		} catch (NumberFormatException | IOException e) {
-			// TODO Auto-generated catch block
-			System.err.println("IOException or NumberFormatException");
-			e.printStackTrace();
-		}
 	
 		return list;
 		
+	}
+	*/
+	public static ArrayList<Flight> createFlightObjects() {
+	
+		ArrayList<String> flightStrings = fileInput(Main.flightFile);
+		ArrayList<Flight> flightObjects = new ArrayList<Flight>();
+		String flight;
+		
+		
+		for(int i = 0; i < flightStrings.size(); i++) {
+			
+			flight = (String) flightStrings.get(i); //Grab Flight String
+			
+			String[] splitter = flight.split(","); //Split String into Array [ID] [Capacity] [Price] [Origin] [Destination]
+			
+			Flight newFlight = new Flight();  //Initialize OBJ
+			 
+			newFlight.setID(splitter[0]);   //ID
+			newFlight.setCapacity(Integer.parseInt(splitter[1])); //Capacity
+			newFlight.setPrice(Double.parseDouble(splitter[2])); //Price
+			newFlight.setOrigin(splitter[3]);  //Origin
+			newFlight.setDestination(splitter[4]); //Destination
+			
+			flightObjects.add(newFlight); //Add new OBJ to flightObjects list
+		}
+		for(Flight f : flightObjects) {
+			System.out.println(f);
+		}
+		
+		return flightObjects;
+		
+	}
+	
+	public static ArrayList<Reservation> createPassengerObjects() {
+		
+		ArrayList<String> reservationStrings = fileInput(Main.passengerFile);
+		ArrayList<Reservation> reservationObjects = new ArrayList<Reservation>();
+		String reservation;
+		
+		
+		for(int i = 0; i < reservationStrings.size(); i++) {
+			
+			reservation = (String) reservationStrings.get(i); //Grab Flight String
+			
+			String[] splitter = reservation.split(","); //Split String into Array [ID] [Capacity] [Price] [Origin] [Destination]
+			
+			Reservation newReservation = new Reservation();  //Initialize OBJ
+			 
+			newFlight.setID(splitter[0]);   //ID
+			newFlight.setCapacity(Integer.parseInt(splitter[1])); //Capacity
+			newFlight.setPrice(Double.parseDouble(splitter[2])); //Price
+			newFlight.setOrigin(splitter[3]);  //Origin
+			newFlight.setDestination(splitter[4]); //Destination
+			
+			reservationObjects.add(newFlight); //Add new OBJ to flightObjects list
+		}
+		for(Flight f : flightObjects) {
+			System.out.println(f);
+		}
+		
+		return reservationObjects;
+		
+	}
+	
+	public static ArrayList<String> fileInput(File file){
+		
+		BufferedReader input = null;
+		
+		try {
+					input = new BufferedReader(new FileReader(file)); //Buffered reader that reads in File
+		} catch (FileNotFoundException e) {
+			System.out.println("File Not Found!");
+		}
+		
+		ArrayList<String> list = new ArrayList<String>(); 
+		
+		String line;
+		
+		try {
+			while((line = input.readLine()) != null) { //adds each line of file to a list
+				list.add(line);
+			}
+		} catch (IOException e) {
+	
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 

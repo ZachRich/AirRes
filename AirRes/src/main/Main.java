@@ -23,7 +23,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Main {
 
 	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
-	static File flightFile = new File("");
+	static File flightFile = new File("/home/zach/Desktop/AirRes-Test-Files/FlightFiles/FlightFileNoErrors.txt");
 	static File passengerFile = new File("");
 	static File outputfilepath = new File("");
 	private JFrame frame;
@@ -34,12 +34,14 @@ public class Main {
 	public static void main(String[] args) {
 		
 		
+		
+		/*
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			} catch (InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-
+		 */
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,6 +55,8 @@ public class Main {
 
 		
 	}
+	
+	
 
 	/**
 	 * Create the application.
@@ -100,8 +104,8 @@ public class Main {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				SystemRunner.initalizeFlights(flightFile, passengerFile, flightMap);
-				SystemRunner.printHashMap(flightMap);
+				//SystemRunner.initalizeFlights(flightFile, passengerFile, flightMap);
+				//SystemRunner.printHashMap(flightMap);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
