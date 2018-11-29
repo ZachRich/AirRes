@@ -24,7 +24,7 @@ public class Main {
 
 	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
 	static File flightFile = new File("/home/zach/Desktop/AirRes-Test-Files/FlightFiles/FlightFileNoErrors.txt");
-	static File passengerFile = new File("");
+	static File passengerFile = new File("/home/zach/Desktop/AirRes-Test-Files/PassengerFiles/PassengerFileNoErrors.txt");
 	static File outputfilepath = new File("");
 	private JFrame frame;
 
@@ -32,9 +32,7 @@ public class Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		
-		
+
 		/*
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -104,8 +102,7 @@ public class Main {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//SystemRunner.initalizeFlights(flightFile, passengerFile, flightMap);
-				//SystemRunner.printHashMap(flightMap);
+				SystemRunner.populateHashMap(flightMap);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();

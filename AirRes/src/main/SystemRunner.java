@@ -30,7 +30,7 @@ public class SystemRunner {
 			  int format = 0;
 			  for(Reservation r : value) {
 				  
-				  if(format % 3 == 0) {
+				  if(format % 3 == 0) {  //new line every 3 Seats
 					  sb.append("\n");
 				  }
 				  
@@ -45,86 +45,33 @@ public class SystemRunner {
 		System.out.println(sb);
 		
 	}
-
-	/*
 	
-	public static void initalizeFlights(File flights, File passengers, HashMap<Flight, Reservation[]> map) throws NumberFormatException, IOException {
-
-		ArrayList<Flight> temp = new ArrayList<Flight>();
-		ArrayList<Reservation> passengerList = initalizePassengers(passengers);
-
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(flights));
-		} catch (FileNotFoundException e) {
-			System.err.println("File Not Found");
+	
+	
+	public static void populateHashMap(HashMap<Flight, Reservation[]> hashMap) {
+		
+		ArrayList<Flight> flights = createFlightObjects();
+		ArrayList<Reservation> reservations = createReservationObjects();
+		
+		for(int j = 0; j < flights.size(); j++) {
+		
+		Reservation[] tempArray = new Reservation[flights.get(j).getCapacity()];
+		
+		for(int i = 0; i < reservations.size(); i++) {  //
+			if(reservations.get(i) != null && reservations.get(i).getOrigin().equals(flights.get(j).getOrigin()) && reservations.get(i).getDest().equals(flights.get(j).getDestination())) {
+				tempArray[reservations.get(i).getSeatNumber() - 1] = reservations.get(i); 
+				/*
+				 * Compares Origin + Destination on reservation and flight objects,
+				 * If its a match, It will add reservation to the Flight
+				 */
+			}
 		}
-
-		String line;
-
-		try {
-			while ((line = br.readLine()) != null) {
-				String[] values = line.split(",");
-
-				Flight newFlight = new Flight();
-				
-				newFlight.setID(values[0]);                                                  //Object Creation
-				newFlight.setCapacity(Integer.parseInt(values[1]));
-				newFlight.setPrice(Double.parseDouble(values[2]));
-				newFlight.setOrigin(values[3]);
-				newFlight.setDestination(values[4]);
-				
-				Reservation[] tempArray = new Reservation[newFlight.getCapacity()];
-				
-				
-				for(int i = 0; i < passengerList.size(); i++) {
-					if(passengerList.get(i) != null && passengerList.get(i).getOrigin().equals(newFlight.getOrigin()) && passengerList.get(i).getDest().equals(newFlight.getDestination())) {
-						tempArray[passengerList.get(i).getSeatNumber() - 1] = passengerList.get(i); 
-						
-					}
-				}
-				
-				map.put(newFlight, tempArray);
-				
-			}
-
-			br.close();
-		} catch (NumberFormatException | IOException e) {
-			// TODO Auto-generated catch block
-			System.err.println("IOException or NumberFormatException");
-			e.printStackTrace();
+		
+		hashMap.put(flights.get(j), tempArray);
+		
 		}
-
 	}
-
-	private static ArrayList<Reservation> initalizePassengers(File file) throws NumberFormatException, IOException {
-		
-		ArrayList<Reservation> list = new ArrayList<Reservation>();
-		
-		BufferedReader br = null;
 	
-			try {
-				br = new BufferedReader(new FileReader(file));               //Setting up file I/O
-			} catch (FileNotFoundException e1) {
-				System.out.println("File Not Found; Please choose another.");
-				Main.setPassengerFile();
-			}
-
-			
-			
-		String line;
-
-			while ((line = br.readLine()) != null) {
-				String[] values = line.split(",");
-				
-				Reservation newReservation = new Reservation(values[0], values[1], Integer.parseInt(values[2]), values[3]);
-				list.add(newReservation);
-			}
-	
-		return list;
-		
-	}
-	*/
 	public static ArrayList<Flight> createFlightObjects() {
 	
 		ArrayList<String> flightStrings = fileInput(Main.flightFile);
@@ -153,7 +100,7 @@ public class SystemRunner {
 		
 	}
 	
-	public static ArrayList<Reservation> createPassengerObjects() {
+	public static ArrayList<Reservation> createReservationObjects() {
 		
 		ArrayList<String> reservationStrings = fileInput(Main.passengerFile);
 		ArrayList<Reservation> reservationObjects = new ArrayList<Reservation>();
