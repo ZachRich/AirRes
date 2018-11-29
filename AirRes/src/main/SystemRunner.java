@@ -30,9 +30,13 @@ public class SystemRunner {
 		
 		System.out.println("Flight added: \n");
 		controller.updateView(); //print out view
+		
+		System.out.println("New Map with flight added");
+		
+		printHashMap(Main.flightMap);
 	}
 	
-	public static void searchFlight() {
+	public static void searchFlight(Flight flight) {
 		
 	}
 

@@ -33,7 +33,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
-		SystemRunner.addFlight(flightMap, "A400", 20, 200.0, "DEN", "ORD");
+		
 		
 		/*
 			try {
@@ -66,6 +66,9 @@ public class Main {
 		
 		initialize();
 
+		SystemRunner.printHashMap(flightMap);
+		
+		
 	}
 
 	/**
@@ -105,6 +108,7 @@ public class Main {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				SystemRunner.populateHashMap(flightMap);
+				SystemRunner.addFlight(flightMap, "A500", 30, 300.0, "DEN", "ORD");
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
