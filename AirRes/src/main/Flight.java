@@ -1,5 +1,6 @@
 package main;
 
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class Flight {
@@ -115,6 +116,35 @@ public class Flight {
 		
 		return "Flight: " + ID + "\n Capacity:  " + capacity + "\n Price: $"
 		+ price + "\n Path: " + origin + " to " + destination + "\n";
+		
+	}
+	
+	public static void addFlight(HashMap<Flight, Reservation[]> hashMap, String ID, int capacity, double price, String origin, String destination) {
+		
+		Flight newFlight = new Flight();
+		newFlight.setID(ID);
+		newFlight.setCapacity(capacity);
+		newFlight.setPrice(price);
+		newFlight.setOrigin(origin);
+		newFlight.setDestination(destination);
+		
+		FlightView view = new FlightView();
+		
+		FlightController controller = new FlightController(newFlight, view);
+		
+		hashMap.put(newFlight, null);
+		
+		System.out.println("Flight added: \n");
+		controller.updateView(); //print out view
+		
+
+	}
+	
+	public static void removeFlight(Flight flight) {
+		
+	}
+	
+	public static void searchFlight(Flight flight) {
 		
 	}
 	

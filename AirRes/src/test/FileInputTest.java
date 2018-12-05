@@ -2,16 +2,13 @@ package test;
 
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-
-import main.Flight;
-import main.Reservation;
 import org.junit.Test;
 
-public class SystemRunnerTest {
+public class FileInputTest {
 
 	@Test
 	public void test() {
-		
+		fail("Not yet implemented");
 	}
+
 }

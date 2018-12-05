@@ -12,33 +12,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 public class SystemRunner {
-	
-	public static void addFlight(HashMap<Flight, Reservation[]> hashMap, String ID, int capacity, double price, String origin, String destination) {
-		
-		Flight newFlight = new Flight();
-		newFlight.setID(ID);
-		newFlight.setCapacity(capacity);
-		newFlight.setPrice(price);
-		newFlight.setOrigin(origin);
-		newFlight.setDestination(destination);
-		
-		FlightView view = new FlightView();
-		
-		FlightController controller = new FlightController(newFlight, view);
-		
-		hashMap.put(newFlight, null);
-		
-		System.out.println("Flight added: \n");
-		controller.updateView(); //print out view
-		
-		System.out.println("New Map with flight added");
-		
-		printHashMap(Main.flightMap);
-	}
-	
-	public static void searchFlight(Flight flight) {
-		
-	}
 
 	
 	public static void printHashMap(HashMap<Flight, Reservation[]> map) {

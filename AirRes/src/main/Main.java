@@ -1,23 +1,35 @@
 package main;
 
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import main.EnvTableTest.EnvDataModel;
 
 
 public class Main {
@@ -74,75 +86,57 @@ public class Main {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(200, 100, 900, 200);
+	public void initialize() {
+		frame = new JFrame("AirRes Flight System");
+		frame.getContentPane().setLayout(new FlowLayout());
+		frame.setSize(1800, 1200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{306, 388, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{43, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		frame.getContentPane().setLayout(gridBagLayout);
+		frame.setVisible(true);
 		
-		JLabel lblNewLabel = new JLabel("Airline Booking System");
-		lblNewLabel.setFont(new Font("Ubuntu", Font.PLAIN, 37));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(2, 2, 5, 5);
-		gbc_lblNewLabel.anchor = GridBagConstraints.NORTHWEST;
-		gbc_lblNewLabel.gridx = 1;
-		gbc_lblNewLabel.gridy = 0;
-		frame.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
-		JButton btnNewButton_1 = new JButton("Choose Flight File");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		//Passenger Button
+		JButton passengerChooserButton = new JButton();
+		passengerChooserButton.setText("Passenger Data File");
+		
+		passengerChooserButton.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				setFlightFile();
-				
+					setPassengerFile();
 			}
 		});
 		
-		JButton btnNewButton_2 = new JButton("Book Flights");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		frame.add(passengerChooserButton);
+		
+		//Flight Button
+		JButton flightChooserButton = new JButton();
+		flightChooserButton.setText("Flight Data File");
+		flightChooserButton.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+					setFlightFile();
+			}
+		});
+		
+		frame.add(flightChooserButton);
+		
+		//Book Flights Button
+		JButton bookFlights = new JButton();
+		bookFlights.setText("Run System");
+		bookFlights.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
 				SystemRunner.populateHashMap(flightMap);
-				SystemRunner.addFlight(flightMap, "A500", 30, 300.0, "DEN", "ORD");
+				
 			}
 		});
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.insets = new Insets(2, 2, 5, 5);
-		gbc_btnNewButton_2.gridx = 1;
-		gbc_btnNewButton_2.gridy = 4;
-		frame.getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.gridx = 3;
-		gbc_btnNewButton_1.gridy = 4;
-		frame.getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnNewButton = new JButton("Choose Passenger File");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				setPassengerFile();
-				
-			}
-		});
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(2, 2, 0, 5);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 4;
-		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
+		frame.add(bookFlights);
 		
-		JButton btnNewButton_4 = new JButton("Book Flights");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				SystemRunner.populateHashMap(flightMap);
-				SystemRunner.printHashMap(flightMap);
-			}
-		});
+		
+		
 	}
 
 	public static File setFlightFile() {
