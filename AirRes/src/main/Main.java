@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,10 +21,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class Main {
 
@@ -34,7 +38,6 @@ public class Main {
 	static File outputfilepath = new File("");
 	private JFrame frame;
 	private JComponent ui = null;
-	private String[] buttonNames = {"Flight File", "Passenger File", "Add Flight", "Sort", "Admin", "End"};
     private String[][] comboFirstNames = {{"Departing Stop"}, {"Final Stop"}};
    
     Main(){
@@ -68,6 +71,10 @@ public class Main {
         panel2.add(addCombosToPanel(comboFirstNames), BorderLayout.PAGE_START);
         // give the 3rd panel some size
         panel3.add(new JLabel(new ImageIcon(new BufferedImage(400,200,BufferedImage.TYPE_INT_ARGB))));
+        
+        JTable table = new JTable(toTableModel(flightMap));
+        
+       panel3.add(table);
         
         JPanel p = new JPanel(new GridLayout(0, 2));
         panel1.add(p, BorderLayout.LINE_START);
@@ -134,15 +141,7 @@ public class Main {
             panel1.add(panel2, BorderLayout.CENTER);
             ui.add(panel1, BorderLayout.CENTER);
     }
-    
-    private JPanel addButtonsToPanel(String[] ids) {
-        JPanel p = new JPanel(new GridLayout(0, 2));
-        for (String id : ids) {
-            p.add(new JButton(id));
-        }
-        return p;
-    }
-    
+
     private JPanel addCombosToPanel(String[][] ids) {
         JPanel p = new JPanel(new FlowLayout());
         for (String[] id : ids) {
@@ -178,6 +177,16 @@ public class Main {
                 f.setVisible(true);
             }
 		});
+	}
+	
+	public static TableModel toTableModel(HashMap<?,?> map) {
+	    DefaultTableModel model = new DefaultTableModel(
+	        new Object[] { "Key", "Value" }, 0
+	    );
+	    for (Entry<?, ?> entry : map.entrySet()) {
+	        model.addRow(new Object[] { entry.getKey(), entry.getValue() });
+	    }
+	    return model;
 	}
 
 	/**
