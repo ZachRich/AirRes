@@ -1,17 +1,28 @@
 package main;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Main {
@@ -22,7 +33,127 @@ public class Main {
 			"/home/zach/Desktop/AirRes-Test-Files/PassengerFiles/PassengerFileNoErrors.txt");
 	static File outputfilepath = new File("");
 	private JFrame frame;
+	private JComponent ui = null;
+	private String[] buttonNames = {"Flight File", "Passenger File", "Add Flight", "Sort", "Admin", "End"};
+    private String[][] comboFirstNames = {{"Departing Stop"}, {"Final Stop"}};
+   
+    Main(){
+    	initUI();
+    }
+    
+    public void initUI() {
+        if (ui!=null) return;
 
+        // I always use this 'ui' panel as a content pane that contains
+        // everything else..
+        ui = new JPanel(new BorderLayout(4,4));
+        ui.setBorder(new EmptyBorder(4,4,4,4));
+
+        // now to create the 3 panels of the '3 panel layout'. 
+        JPanel panel1 = new JPanel(new BorderLayout());
+        panel1.setBackground(Color.BLUE);
+        panel1.setBorder(new TitledBorder("Choose Option"));
+
+        JPanel panel2 = new JPanel(new BorderLayout());
+        panel2.setBackground(Color.GREEN);
+        panel2.setBorder(new TitledBorder("Choose Two Stops"));
+
+        JPanel panel3 = new JPanel(new BorderLayout());
+        panel3.setBackground(Color.WHITE);
+        panel3.setBorder(new TitledBorder("Third Panel Here"));
+
+        // add the buttons to 1st panel
+        //panel1.add(addButtonsToPanel(buttonNames), BorderLayout.LINE_START);
+        // add the combos to the top of 2nd panel 
+        panel2.add(addCombosToPanel(comboFirstNames), BorderLayout.PAGE_START);
+        // give the 3rd panel some size
+        panel3.add(new JLabel(new ImageIcon(new BufferedImage(400,200,BufferedImage.TYPE_INT_ARGB))));
+        
+        JPanel p = new JPanel(new GridLayout(0, 2));
+        panel1.add(p, BorderLayout.LINE_START);
+        
+     // Passenger Button
+     		JButton passengerChooserButton = new JButton();
+     		passengerChooserButton.setText("Passenger Data File");
+
+     		passengerChooserButton.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+     				setPassengerFile();
+     			}
+     		});
+
+     		p.add(passengerChooserButton);
+
+     		// Flight Button
+     		JButton flightChooserButton = new JButton();
+     		flightChooserButton.setText("Flight Data File");
+     		flightChooserButton.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+     				setFlightFile();
+     			}
+     		});
+
+     		p.add(flightChooserButton);
+
+     		// Book Flights Button
+     		JButton bookFlights = new JButton();
+     		bookFlights.setText("Run System");
+     		bookFlights.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+     				SystemRunner.populateHashMap(flightMap);
+     				SystemRunner.printHashMap(flightMap);
+     			}
+     		});
+
+     		p.add(bookFlights);
+
+     		JButton addFlightButton = new JButton();
+     		addFlightButton.setText("Add Flight");
+     		addFlightButton.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+
+     				SystemRunner.addFlight(flightMap);
+
+     			}
+
+     		});
+
+     		p.add(addFlightButton);
+
+     		
+     	   // now assemble them all together
+            panel2.add(panel3, BorderLayout.CENTER);
+            panel1.add(panel2, BorderLayout.CENTER);
+            ui.add(panel1, BorderLayout.CENTER);
+    }
+    
+    private JPanel addButtonsToPanel(String[] ids) {
+        JPanel p = new JPanel(new GridLayout(0, 2));
+        for (String id : ids) {
+            p.add(new JButton(id));
+        }
+        return p;
+    }
+    
+    private JPanel addCombosToPanel(String[][] ids) {
+        JPanel p = new JPanel(new FlowLayout());
+        for (String[] id : ids) {
+            p.add(new JComboBox<String>(id));
+        }
+        return p;
+    }
+    
+    public JComponent getUI() {
+        return ui;
+    }
 	/**
 	 * Launch the application.
 	 */
@@ -30,26 +161,28 @@ public class Main {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					Main window = new Main();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (Exception useDefault) {
+                }
+                Main o = new Main();
 
+                JFrame f = new JFrame(o.getClass().getSimpleName());
+                f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                f.setLocationByPlatform(true);
+
+                f.setContentPane(o.getUI());
+                f.pack();
+                f.setMinimumSize(f.getSize());
+
+                f.setVisible(true);
+            }
+		});
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public Main() {
-		// change
-
-		initialize();
-
-	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -60,63 +193,6 @@ public class Main {
 		frame.setSize(1800, 1200);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
-		// Passenger Button
-		JButton passengerChooserButton = new JButton();
-		passengerChooserButton.setText("Passenger Data File");
-
-		passengerChooserButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				setPassengerFile();
-			}
-		});
-
-		frame.add(passengerChooserButton);
-
-		// Flight Button
-		JButton flightChooserButton = new JButton();
-		flightChooserButton.setText("Flight Data File");
-		flightChooserButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				setFlightFile();
-			}
-		});
-
-		frame.add(flightChooserButton);
-
-		// Book Flights Button
-		JButton bookFlights = new JButton();
-		bookFlights.setText("Run System");
-		bookFlights.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				SystemRunner.populateHashMap(flightMap);
-				SystemRunner.printHashMap(flightMap);
-			}
-		});
-
-		frame.add(bookFlights);
-
-		JButton addFlightButton = new JButton();
-		addFlightButton.setText("Add Flight");
-		addFlightButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-
-				SystemRunner.addFlight(flightMap);
-
-			}
-
-		});
-
-		frame.add(addFlightButton);
-
 	}
 
 	public static File setFlightFile() {
