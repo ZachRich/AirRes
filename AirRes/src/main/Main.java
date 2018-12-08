@@ -2,34 +2,18 @@ package main;
 
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
-import main.EnvTableTest.EnvDataModel;
+	
 
 
 public class Main {
@@ -45,15 +29,10 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 
+		FlightView.addFlight(flightMap, "A122", 10, 100.0, "DEN", "CDG");
+		SystemRunner.printHashMap(flightMap);
 		
-		
-		/*
-			try {
-				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			} catch (InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		 */
+	/*
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -64,7 +43,7 @@ public class Main {
 				}
 			}
 		});       
-
+*/
 		
 	}
 	
@@ -76,9 +55,9 @@ public class Main {
 	public Main() {
 	//change
 		
-		initialize();
+		//initialize();
 
-		SystemRunner.printHashMap(flightMap);
+		
 		
 		
 	}
@@ -129,14 +108,12 @@ public class Main {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				SystemRunner.populateHashMap(flightMap);
-				
+				SystemRunner.printHashMap(flightMap);
 			}
 		});
 		
 		frame.add(bookFlights);
-		
-		
-		
+
 	}
 
 	public static File setFlightFile() {

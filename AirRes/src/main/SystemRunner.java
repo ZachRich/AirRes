@@ -27,6 +27,7 @@ public class SystemRunner {
 			  String output = "-------------------------------------------------------------------------------------------------------------" +"\n" + key +  "[";
 			  sb.append(output);
 			  int format = 0;
+			  
 			  for(Reservation r : value) {
 				  
 				  if(format % 3 == 0) {  //new line every 3 Seats
