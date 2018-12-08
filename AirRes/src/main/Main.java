@@ -14,8 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import com.sun.codemodel.internal.JLabel;
-
 public class Main {
 
 	static HashMap<Flight, Reservation[]> flightMap = new HashMap<Flight, Reservation[]>();
@@ -29,16 +27,17 @@ public class Main {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		SystemRunner.addFlight(flightMap);
-		SystemRunner.printHashMap(flightMap);
-		
 
-		/*
-		 * EventQueue.invokeLater(new Runnable() { public void run() { try { Main window
-		 * = new Main(); window.frame.setVisible(true); } catch (Exception e) {
-		 * e.printStackTrace(); } } });
-		 */
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main window = new Main();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 	}
 
@@ -48,7 +47,7 @@ public class Main {
 	public Main() {
 		// change
 
-		// initialize();
+		initialize();
 
 	}
 
@@ -103,18 +102,20 @@ public class Main {
 
 		frame.add(bookFlights);
 
-		JButton addFlight = new JButton();
-		addFlight.setText("Add Flight");
-		addFlight.addActionListener(new ActionListener() {
+		JButton addFlightButton = new JButton();
+		addFlightButton.setText("Add Flight");
+		addFlightButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				// SystemRunner.addFlight(flightMap, ID, capacity, price, origin, destination);
+				SystemRunner.addFlight(flightMap);
 
 			}
 
 		});
+
+		frame.add(addFlightButton);
 
 	}
 
@@ -177,23 +178,27 @@ public class Main {
 	}
 
 	public static Flight flightEntryBox() {
-		
-		 Flight newFlight = new Flight();
-		 
-		 String flightNum = JOptionPane.showInputDialog(null, "Please enter Flight Number: ", "Flight Number", JOptionPane.OK_CANCEL_OPTION);
-		 String capacity = JOptionPane.showInputDialog(null, "Please enter Capacity: ", "Capacity Number", JOptionPane.OK_CANCEL_OPTION);
-		 String price = JOptionPane.showInputDialog(null, "Please enter Price: ", "Price", JOptionPane.OK_CANCEL_OPTION);
-		 String origin = JOptionPane.showInputDialog(null, "Please enter 3 Digit Origin Code: ", "Origin Code", JOptionPane.OK_CANCEL_OPTION);
-		 String destination = JOptionPane.showInputDialog(null, "Please enter 3 Digit Destination Code: ", "Destination Code", JOptionPane.OK_CANCEL_OPTION);
-		 
-		 newFlight.setID(flightNum);
-		 newFlight.setCapacity(Integer.parseInt(capacity));
-		 newFlight.setPrice(Double.parseDouble(price));
-		 newFlight.setOrigin(origin);
-		 newFlight.setDestination(destination);
-		 
-		 return newFlight;
-		 
-	 }
+
+		Flight newFlight = new Flight();
+
+		String flightNum = JOptionPane.showInputDialog(null, "Please enter Flight Number: ", "Flight Number",
+				JOptionPane.OK_CANCEL_OPTION);
+		String capacity = JOptionPane.showInputDialog(null, "Please enter Capacity: ", "Capacity Number",
+				JOptionPane.OK_CANCEL_OPTION);
+		String price = JOptionPane.showInputDialog(null, "Please enter Price: ", "Price", JOptionPane.OK_CANCEL_OPTION);
+		String origin = JOptionPane.showInputDialog(null, "Please enter 3 Digit Origin Code: ", "Origin Code",
+				JOptionPane.OK_CANCEL_OPTION);
+		String destination = JOptionPane.showInputDialog(null, "Please enter 3 Digit Destination Code: ",
+				"Destination Code", JOptionPane.OK_CANCEL_OPTION);
+
+		newFlight.setID(flightNum);
+		newFlight.setCapacity(Integer.parseInt(capacity));
+		newFlight.setPrice(Double.parseDouble(price));
+		newFlight.setOrigin(origin);
+		newFlight.setDestination(destination);
+
+		return newFlight;
+
+	}
 
 }
