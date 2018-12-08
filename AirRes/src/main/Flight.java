@@ -119,9 +119,4 @@ public class Flight {
 		
 	}
 	
-	
-	public static void removeFlight(Flight flight) {
-		
-	}
-	
 }

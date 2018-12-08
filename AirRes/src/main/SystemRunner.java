@@ -13,6 +13,27 @@ import java.util.Set;
 
 public class SystemRunner {
 
+	public static void addFlight(HashMap<Flight, Reservation[]> hashMap) {
+
+		Flight newFlight = Main.flightEntryBox();
+		
+		FlightView view = new FlightView();
+
+		FlightController controller = new FlightController(newFlight, view);
+
+		Reservation[] res = new Reservation[newFlight.getCapacity()];
+		
+		hashMap.put(newFlight, res);
+
+		System.out.println("Flight added: \n");
+		controller.updateView(); // print out view
+
+	}
+	
+	public static void removeFlight(Flight flight) {
+		
+	}
+	
 	
 	public static void printHashMap(HashMap<Flight, Reservation[]> map) {
 		
