@@ -30,7 +30,9 @@ public class SystemRunner {
 
 	}
 	
-	public static void removeFlight(Flight flight) {
+	public static void removeFlight(HashMap<Flight, Reservation[]> hashMap) {
+		
+		
 		
 	}
 	

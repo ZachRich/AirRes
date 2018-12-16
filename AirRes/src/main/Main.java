@@ -135,6 +135,20 @@ public class Main {
 
      		p.add(addFlightButton);
 
+     		JButton removeFlightButton = new JButton();
+     		removeFlightButton.setText("Remove Flight");
+     		removeFlightButton.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+
+     				SystemRunner.removeFlight(flightMap);
+
+     			}
+
+     		});
+     		
+     		p.add(removeFlightButton);
      		
      	   // now assemble them all together
             panel2.add(panel3, BorderLayout.CENTER);
