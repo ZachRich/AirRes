@@ -34,10 +34,12 @@ public class SystemRunner {
 		
 		
 		
+		//hashMap.get(Flight);
+		
 	}
 	
 	
-	public static void printHashMap(HashMap<Flight, Reservation[]> map) {
+	public static String printHashMap(HashMap<Flight, Reservation[]> map) {
 		
 		StringBuilder sb = new StringBuilder();
 		
@@ -65,7 +67,9 @@ public class SystemRunner {
 			 
 			}
 		
-		System.out.println(sb);
+		
+		
+		return sb.toString();
 		
 	}
 	

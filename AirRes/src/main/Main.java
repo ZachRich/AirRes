@@ -4,12 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
@@ -71,10 +77,6 @@ public class Main {
         panel2.add(addCombosToPanel(comboFirstNames), BorderLayout.PAGE_START);
         // give the 3rd panel some size
         panel3.add(new JLabel(new ImageIcon(new BufferedImage(400,200,BufferedImage.TYPE_INT_ARGB))));
-        
-        JTable table = new JTable(toTableModel(flightMap));
-        
-       panel3.add(table);
         
         JPanel p = new JPanel(new GridLayout(0, 2));
         panel1.add(p, BorderLayout.LINE_START);
@@ -150,6 +152,30 @@ public class Main {
      		
      		p.add(removeFlightButton);
      		
+     		JButton exportFile = new JButton();
+     		exportFile.setText("Export Flight Summary");
+     		exportFile.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+     				
+     				try {
+						exportFile();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+     			}
+     		});
+     		
+     		p.add(exportFile);
+     		
+     		
+     		
+     		
+     		
+     		
      	   // now assemble them all together
             panel2.add(panel3, BorderLayout.CENTER);
             panel1.add(panel2, BorderLayout.CENTER);
@@ -192,16 +218,7 @@ public class Main {
             }
 		});
 	}
-	
-	public static TableModel toTableModel(HashMap<?,?> map) {
-	    DefaultTableModel model = new DefaultTableModel(
-	        new Object[] { "Key", "Value" }, 0
-	    );
-	    for (Entry<?, ?> entry : map.entrySet()) {
-	        model.addRow(new Object[] { entry.getKey(), entry.getValue() });
-	    }
-	    return model;
-	}
+
 
 	/**
 	 * Create the application.
@@ -250,6 +267,20 @@ public class Main {
 		 * box
 		 */
 		JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.WARNING_MESSAGE);
+	}
+	
+	
+	public static void exportFile() throws IOException {
+	
+		String userHomeFolder = System.getProperty("user.home");
+		File textFile = new File(userHomeFolder, "Output.txt");
+		BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
+		try {
+		    out.append(SystemRunner.printHashMap(flightMap));
+		} finally {
+		   out.close();
+		}
+		
 	}
 
 	/*
