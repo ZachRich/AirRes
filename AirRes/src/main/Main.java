@@ -44,7 +44,6 @@ public class Main {
 	static File outputfilepath = new File("");
 	private JFrame frame;
 	private JComponent ui = null;
-    private String[][] comboFirstNames = {{"Departing Stop"}, {"Final Stop"}};
    
     Main(){
     	initUI();
@@ -63,18 +62,15 @@ public class Main {
         panel1.setBackground(Color.BLUE);
         panel1.setBorder(new TitledBorder("Choose Option"));
 
-        JPanel panel2 = new JPanel(new BorderLayout());
-        panel2.setBackground(Color.GREEN);
-        panel2.setBorder(new TitledBorder("Choose Two Stops"));
 
         JPanel panel3 = new JPanel(new BorderLayout());
-        panel3.setBackground(Color.WHITE);
-        panel3.setBorder(new TitledBorder("Third Panel Here"));
+        panel3.setBackground(Color.BLACK);
+        panel3.setBorder(new TitledBorder("Instructuions"));
 
         // add the buttons to 1st panel
         //panel1.add(addButtonsToPanel(buttonNames), BorderLayout.LINE_START);
         // add the combos to the top of 2nd panel 
-        panel2.add(addCombosToPanel(comboFirstNames), BorderLayout.PAGE_START);
+       
         // give the 3rd panel some size
         panel3.add(new JLabel(new ImageIcon(new BufferedImage(400,200,BufferedImage.TYPE_INT_ARGB))));
         
@@ -171,14 +167,41 @@ public class Main {
      		
      		p.add(exportFile);
      		
+     		JButton addPassenger = new JButton();
+     		addPassenger.setText("Add Passenger");
+     		addPassenger.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+     				
+     				SystemRunner.addPassenger(flightMap);
+
+     			}
+     		});
+     		
+     		p.add(addPassenger);
+     		
+     		JButton removePassenger = new JButton();
+     		removePassenger.setText("Remove Passenger");
+     		removePassenger.addActionListener(new ActionListener() {
+
+     			@Override
+     			public void actionPerformed(ActionEvent arg0) {
+     				
+     				SystemRunner.removePassenger(flightMap);
+
+     			}
+     		});
+     		
+     		p.add(removePassenger);
      		
      		JLabel instructions = new JLabel("Please Select a Passenger file, and a Flight File. \n Then add or remove any flights and export the results");
      		
      		panel3.add(instructions);
      		
      	   // now assemble them all together
-            panel2.add(panel3, BorderLayout.CENTER);
-            panel1.add(panel2, BorderLayout.CENTER);
+            //panel2.add(panel3, BorderLayout.CENTER);
+            panel1.add(panel3, BorderLayout.CENTER);
             ui.add(panel1, BorderLayout.CENTER);
     }
 

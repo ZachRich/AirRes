@@ -21,10 +21,29 @@ public class SystemRunner {
 		
 		ReservationController controller = new ReservationController(newRes, view);
 		
-		hashMap.containsKey(new Flight(newRes.getOrigin(), newRes.getDest()));
 		
 		
+		for(Entry<Flight, Reservation[]> e : hashMap.entrySet()) {
+			if(e.getKey().getOrigin().equals(newRes.getOrigin()) && e.getKey().getDestination().equals(newRes.getDest())) {
+				Reservation[] resArr = new Reservation[e.getKey().getCapacity()];
+				resArr[newRes.getSeatNumber()] = newRes;
+				hashMap.put(e.getKey(), resArr);
+			}
+		}
 		
+		System.out.println("Passenger Added: \n");
+		controller.updateView();
+		
+	}
+	
+	public static void removePassenger(HashMap<Flight, Reservation[]> hashMap) {
+		
+		Reservation newRes = Main.passengerEntryBox();
+		if(hashMap.containsValue(newRes)) {
+			hashMap.values().remove(newRes);
+		} else {
+			Main.infoBox("Invalid Passenger: Passenger does not Exist", "Passenger Not Found");
+		}
 	}
 	
 	public static void addFlight(HashMap<Flight, Reservation[]> hashMap) {
@@ -136,7 +155,7 @@ public class SystemRunner {
 			flightObjects.add(newFlight); //Add new OBJ to flightObjects list
 		}
 		
-		return flightObjects;comp
+		return flightObjects;
 		
 	}
 	
