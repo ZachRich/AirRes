@@ -13,6 +13,20 @@ import java.util.Set;
 
 public class SystemRunner {
 
+	public static void addPassenger(HashMap<Flight, Reservation[]> hashMap) {
+		
+		Reservation newRes = Main.passengerEntryBox();
+		
+		ReservationView view = new ReservationView();
+		
+		ReservationController controller = new ReservationController(newRes, view);
+		
+		hashMap.containsKey(new Flight(newRes.getOrigin(), newRes.getDest()));
+		
+		
+		
+	}
+	
 	public static void addFlight(HashMap<Flight, Reservation[]> hashMap) {
 
 		Flight newFlight = Main.flightEntryBox();
@@ -32,9 +46,7 @@ public class SystemRunner {
 	
 	public static void removeFlight(HashMap<Flight, Reservation[]> hashMap) {
 		
-		
-		
-		//hashMap.get(Flight);
+		hashMap.remove(hashMap.get(Main.flightEntryBox()));
 		
 	}
 	
@@ -64,6 +76,7 @@ public class SystemRunner {
 				  format++;
 			  }
 			  sb.append("]" + "\n");
+			  sb.append(output);
 			 
 			}
 		
@@ -123,7 +136,7 @@ public class SystemRunner {
 			flightObjects.add(newFlight); //Add new OBJ to flightObjects list
 		}
 		
-		return flightObjects;
+		return flightObjects;comp
 		
 	}
 	

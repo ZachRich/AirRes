@@ -172,9 +172,9 @@ public class Main {
      		p.add(exportFile);
      		
      		
+     		JLabel instructions = new JLabel("Please Select a Passenger file, and a Flight File. \n Then add or remove any flights and export the results");
      		
-     		
-     		
+     		panel3.add(instructions);
      		
      	   // now assemble them all together
             panel2.add(panel3, BorderLayout.CENTER);
@@ -328,6 +328,28 @@ public class Main {
 		newFlight.setDestination(destination);
 
 		return newFlight;
+
+	}
+	
+	public static Reservation passengerEntryBox() {
+
+		Reservation newRes = new Reservation();
+
+		String name = JOptionPane.showInputDialog(null, "Please enter name, with no spaces. Ex. \"BobJones\" ", "Name",
+				JOptionPane.OK_CANCEL_OPTION);
+		String seatNum = JOptionPane.showInputDialog(null, "Please enter Seat Num: ", "Seat Number",
+				JOptionPane.OK_CANCEL_OPTION);
+		String origin = JOptionPane.showInputDialog(null, "Please enter 3 Digit Origin Code: ", "Origin Code",
+				JOptionPane.OK_CANCEL_OPTION);
+		String destination = JOptionPane.showInputDialog(null, "Please enter 3 Digit Destination Code: ",
+				"Destination Code", JOptionPane.OK_CANCEL_OPTION);
+
+		newRes.setName(name);
+		newRes.setSeatNumber(Integer.parseInt(seatNum));
+		newRes.setOrigin(origin);
+		newRes.setDest(destination);
+
+		return newRes;
 
 	}
 
