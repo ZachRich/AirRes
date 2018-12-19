@@ -65,7 +65,7 @@ public class Main {
 
         JPanel panel3 = new JPanel(new BorderLayout());
         panel3.setBackground(Color.BLACK);
-        panel3.setBorder(new TitledBorder("Instructuions"));
+        panel3.setBorder(new TitledBorder("Instructions"));
 
         // add the buttons to 1st panel
         //panel1.add(addButtonsToPanel(buttonNames), BorderLayout.LINE_START);
@@ -195,12 +195,11 @@ public class Main {
      		
      		p.add(removePassenger);
      		
-     		JLabel instructions = new JLabel("Please Select a Passenger file, and a Flight File. \n Then add or remove any flights and export the results");
+     		JLabel instructions = new JLabel("Please Select a Passenger file and a Flight File." + "\n" + " Then run the system, add or remove any flights and export the results");
      		
      		panel3.add(instructions);
      		
      	   // now assemble them all together
-            //panel2.add(panel3, BorderLayout.CENTER);
             panel1.add(panel3, BorderLayout.CENTER);
             ui.add(panel1, BorderLayout.CENTER);
     }

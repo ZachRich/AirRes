@@ -1,15 +1,14 @@
 
 Description: 
 
-List of Proposed Features:
+List of Features:
 
-	Give program CSV file to process with all flights listed 
+	Give program TXT file to process with all flights listed 
 	
-	Book flights with a 2nd CSV file
+	Book flights with a 2nd TXT file
 
 	Calculates  seats booked vs. how many seats left
 	
-	Calculates revenue 
 
 	Prints out summary for each Airlines planes
 	
