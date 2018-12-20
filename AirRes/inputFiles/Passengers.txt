@@ -4,7 +4,7 @@ ATL,BOS,3,JacobDoiron
 ATL,LAX,1,ZacharyMacadam
 ATL,LAX,5,ColinMakenzie
 LAX,ORD,5,JessicaBears
-LAX,ORD10,BryanGargan
+LAX,ORD,10,BryanGargan
 BOS,DEN,6,JoeyCardinal
 BOS,DEN,7,CameronRiley
 BOS,DEN,8,SkerdiSkendredi

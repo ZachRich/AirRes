@@ -122,7 +122,8 @@ public class SystemRunner {
 		Reservation[] tempArray = new Reservation[flights.get(j).getCapacity()];
 		
 		for(int i = 0; i < reservations.size(); i++) {  //
-			if(reservations.get(i) != null && reservations.get(i).getOrigin().equals(flights.get(j).getOrigin()) && reservations.get(i).getDest().equals(flights.get(j).getDestination())) {
+			if(reservations.get(i) != null && reservations.get(i).getOrigin().equals(flights.get(j).getOrigin()) && 
+					reservations.get(i).getDest().equals(flights.get(j).getDestination())) {
 				tempArray[reservations.get(i).getSeatNumber() - 1] = reservations.get(i); 
 				/*
 				 * Compares Origin + Destination on reservation and flight objects,
