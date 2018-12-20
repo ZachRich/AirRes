@@ -100,7 +100,6 @@ public class SystemRunner {
 				  format++;
 			  }
 			  sb.append("]" + "\n");
-			  sb.append(output);
 			 
 			}
 		
