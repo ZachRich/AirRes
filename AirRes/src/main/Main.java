@@ -193,7 +193,7 @@ public class Main {
      			}
      		});
      		
-     		p.add(removePassenger);
+     		//p.add(removePassenger);
      		
      		JLabel instructions = new JLabel("Please Select a Passenger file and a Flight File." + "\n" + " Then run the system, add or remove any flights and export the results");
      		

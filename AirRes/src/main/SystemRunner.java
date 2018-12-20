@@ -38,6 +38,11 @@ public class SystemRunner {
 	
 	public static void removePassenger(HashMap<Flight, Reservation[]> hashMap) {
 		
+		/*
+		 * Would be implemented if we had more time
+		 * 
+		 */
+		
 		Reservation newRes = Main.passengerEntryBox();
 		if(hashMap.containsValue(newRes)) {
 			hashMap.values().remove(newRes);
